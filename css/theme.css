@@ -1,0 +1,238 @@
+:root {
+    color-scheme: light dark;
+
+    --content-max-width: 1300px;
+
+    --color-red-100: light-dark(#FCC, #F99);
+    --color-red-200: #E82356;
+    --color-red-300: #820E2C;
+    --color-yellow-100: light-dark(#FFE9B5, #fd8);
+    --color-yellow-200: #FAC526;
+    --color-yellow-300: #C8720F;
+    --color-green-100: light-dark(#BDD, #9DB);
+    --color-green-200: #08A36F;
+    --color-green-300: #224444;
+    --color-blue-100: light-dark(#CDF, #90BADE);
+    --color-blue-200: #1289EF;
+    --color-blue-300: #0932BA;
+    --color-purple-100: light-dark(#ECF, #CDABDE);
+    --color-purple-200: #9851BA;
+    --color-purple-300: #441C5F;
+    --color-white-100: white;
+    --color-black-000: #EEEEEE;
+    --color-black-100: light-dark(#CCC, #9A9A9A);
+    --color-black-200: #515253;
+    --color-black-300: #2D2E2F;
+    --color-black-400: #1c1c1c;
+
+    --font-inter: "Inter", system-ui, Arial, sans-serif;
+
+    --pt-bourgeois: calc(var(--base-value) * 0.75);
+    --pt-long-primer: calc(var(--base-value) * 0.833);
+    --pt-small-pica: calc(var(--base-value) * 0.917);
+    --pt-pica: var(--base-value);
+    --pt-english: calc(var(--base-value) * 1.167);
+    --pt-great-primer: calc(var(--base-value) * 1.5);
+    --pt-paragon: calc(var(--base-value) * 1.667);
+    --pt-double-pica: calc(var(--base-value) * 2);
+    --pt-double-english: calc(var(--base-value) * 2.333);
+    --pt-double-great-primer: calc(var(--base-value) * 3);
+    --pt-canon: calc(var(--base-value) * 4);
+    --pt-double-canon: calc(var(--base-value) * 4.666);
+    --pt-inch: calc(var(--base-value) * 6);
+    --pt-eight-pica: calc(var(--base-value) * 8);
+
+    --line-height-base: 100%;
+    --line-height-single: var(--line-height-base);
+    --line-height-160: calc(var(--line-height-base) * 1.6);
+    --line-height-double: calc(var(--line-height-base) * 2);
+    --letter-spacing-tighter: -0.1rem;
+    --letter-spacing-tight: -0.01rem;
+    --letter-spacing-normal: 0;
+    --letter-spacing-loose: 0.05rem;
+    --letter-spacing-looser: 0.15rem;
+
+    --top-spacing: 200px;
+
+    --background: light-dark(var(--color-black-000), var(--color-black-400));
+    --background-alt: light-dark(var(--color-white-100), var(--color-black-300));
+    --background-inverse: light-dark(var(--color-black-400), var(--color-white-100));
+    --color-accent: var(--color-red-200);
+    --color-icon: light-dark(var(--color-black-200), var(--color-black-100));
+    --text-primary: light-dark(var(--color-black-400), var(--color-black-000));
+    --text-secondary: var(--color-black-200);
+    --text-inverse: light-dark(var(--color-white-100), var(--color-black-400));
+    --link-primary: var(--text-primary);
+    --link-decoration: var(--color-accent);
+    --link-hover: var(--link-decoration);
+}
+@media ( min-width: 48rem ) {
+    :root {
+        --top-spacing: 300px;
+    }
+}
+html {
+    font-size: var(--pt-pica);
+    font-family: var(--font-inter);
+    display: block;
+}
+body {
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+h1 {
+    font-weight: 300;
+    font-size: var(--pt-great-primer);
+    line-height: 133%;
+    letter-spacing: var(--letter-spacing-tight);
+}
+h2 {
+    font-weight: 500;
+    font-size: var(--pt-pica);
+    padding-bottom: var(--spacing-50);
+}
+p {
+    font-weight: 300;
+    line-height: var(--line-height-160);
+    padding-bottom: var(--spacing-100);
+}
+p a {
+    color: var(--link-primary);
+    text-decoration: underline;
+    text-underline-offset: 33%;
+    text-decoration-thickness: 1px !important;
+    text-decoration-color: var(--link-decoration);
+    transition: all 0.3s ease;
+}
+p a:hover {
+    color: var(--link-hover);
+    text-decoration-color: transparent;
+}
+.header {
+    padding-top: var(--spacing-300);
+    padding-bottom: var(--spacing-300);
+}
+.footer {
+    margin-top: var(--spacing-400) !important;
+    padding-top: var(--spacing-300);
+    background-color: var(--background-alt);
+}
+.datapack-entry {
+    margin-top: var(--spacing-400);
+    padding-top: var(--spacing-400);
+    border-top: 1px solid rgb(from var(--text-primary) r g b / 0.33);
+    grid-template-areas: "c c c c" "a a a a" "b b b b";
+
+    @media ( min-width: 48rem ) {
+        grid-template-areas: "a a . b b b b b . c c c";
+    }
+}
+.datapack-entry:has(.tags) {
+    grid-template-areas: "c c c c" "d d d d" "a a a a" "b b b b";
+
+    @media ( min-width: 48rem ) {
+        grid-template-areas: "d d d d d d d d . c c c" "a a . b b b b b . c c c" ". . . . . . . . . c c c";
+    }
+}
+.datapack-entry {
+    & .title {
+        grid-area: a;
+    }
+    & .description {
+        grid-area: b;
+    }
+    & .thumbnail {
+        grid-area: c;
+    }
+    & .tags {
+        grid-area: d;
+        margin-top: var(--spacing-50);
+        margin-bottom: var(--spacing-50);
+    }
+}
+.title > p {
+    margin-top: var(--spacing-200);
+}
+.version {
+    font-size: var(--pt-long-primer);
+}
+.version > .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-50);
+    width: fit-content;
+
+}
+.row > i {
+    font-size: var(--pt-pica);
+    color: var(--color-icon);
+}
+.row * {
+    padding: unset;
+}
+.pill {
+    position: relative;
+    font-size: var(--pt-bourgeois);
+    border-radius: var(--pt-pica);
+    padding: 0.5em 1em;
+    display: inline-block;
+    width: fit-content;
+    text-align: center;
+    cursor: help;
+}
+.pill::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    z-index: 100;
+
+    font-size: var(--pt-bourgeois);
+    text-align: left;
+
+    width: 24ch;
+    padding: 0.75em 1em;
+    border-radius: 0.5em;
+    background-color: rgb(from var(--background-inverse) r g b / 0.95);
+    color: var(--text-inverse);
+
+    opacity: 0;
+    scale: 0;
+    transition: opacity 0.3s ease;
+}
+.pill:hover::after {
+    opacity: 1;
+    scale: 1;
+}
+.pill:has(i) {
+    padding-left: 0.66em;
+}
+.pill i {
+    padding-right: 0.5em;
+}
+.pill.red {
+    background-color: var(--color-red-100);
+    color: var(--color-red-300);
+}
+.pill.yellow {
+    background-color: var(--color-yellow-100);
+    color: var(--color-yellow-300);
+}
+.pill.green {
+    background-color: var(--color-green-100);
+    color: var(--color-green-300);
+}
+.pill.blue {
+    background-color: var(--color-blue-100);
+    color: var(--color-blue-300);
+}
+.pill.purple {
+    background-color: var(--color-purple-100);
+    color: var(--color-purple-300);
+}
+.pill.black {
+    background-color: var(--color-black-100);
+    color: var(--color-black-300);
+}
